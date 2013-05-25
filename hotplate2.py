@@ -30,13 +30,19 @@ def heat_up(a):
 
 	old_cell = hot_plate[a]
 
-	
-
-	if a > 0 and a <= (column_amount - 1):
+	if a <= (column_amount - 1):
 		avg = ((hot_plate[a + 1] + hot_plate[a - 1] + hot_plate[a + column_amount]) / 3)
 
 	elif a >= (plates - column_amount) and a < (plates - 1):
 		avg = ((hot_plate[a + 1] + hot_plate[a - 1] + hot_plate[a - column_amount]) / 3)
+
+	elif 0 == (a + 1) % column_amount:
+		avg = (hot_plate[a - 1] + hot_plate[a + column_amount] \
+		+ hot_plate[a - column_amount]) / 3
+
+	elif 0 == ((a + 1) % column_amount) - column_amount:
+		avg = (hot_plate[a + 1] + hot_plate[a + column_amount] \
+		+ hot_plate[a - column_amount]) / 3
 
 	else:
 		avg = ((hot_plate[a + 1] + hot_plate[a - 1] + hot_plate[a + column_amount] \
