@@ -30,7 +30,7 @@ def heat_up(a):
 
 	old_cell = hot_plate[a]
 
-	# 
+	
 
 	if a > 0 and a <= (column_amount - 1):
 		avg = ((hot_plate[a + 1] + hot_plate[a - 1] + hot_plate[a + column_amount]) / 3)
@@ -69,7 +69,7 @@ for r in range(0, 1000):
 		if a == middle_1 or \
 	   a == middle_2 or \
 	   a == middle_3 or \
-	   a == middle_4 or \
+	   a == middle_4:
 	   
 			continue
 
@@ -80,6 +80,7 @@ for r in range(0, 1000):
 	   a == plates - column_amount or \
 	   a == plates - 1:
 	    	
+			continue
 
 		heat_up(a)
 
