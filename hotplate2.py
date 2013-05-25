@@ -30,46 +30,59 @@ def heat_up(a):
 
 	old_cell = hot_plate[a]
 
-	if a != middle_1 and \
-	   a != middle_2 and \
-	   a != middle_3 and \
-	   a != middle_4 and \
-	   a != 0  and \
-	   a != column_amount - 1  and \
-	   a != plates - column_amount and \
-	   a != plates - 1:
-		
-		if a > 0 and a <= (column_amount - 1):
-			avg = ((hot_plate[a + 1] + hot_plate[a - 1] + hot_plate[a + column_amount]) / 3)
-		
-		elif a >= (plates - column_amount) and a < (plates - 1):
-			avg = ((hot_plate[a + 1] + hot_plate[a - 1] + hot_plate[a - column_amount]) / 3)
+	# 
 
-		else:
-			avg = ((hot_plate[a + 1] + hot_plate[a - 1] + hot_plate[a + column_amount] \
-			+ hot_plate[a - column_amount]) / 4)
-		
-		new_cell = math.ceil(avg * 100) / 100
-		hot_plate[a] = new_cell
+	if a > 0 and a <= (column_amount - 1):
+		avg = ((hot_plate[a + 1] + hot_plate[a - 1] + hot_plate[a + column_amount]) / 3)
 
-		test_cell = new_cell - old_cell
-		test[a] = test_cell
-		stop = all(x == 0 for x in test)
+	elif a >= (plates - column_amount) and a < (plates - 1):
+		avg = ((hot_plate[a + 1] + hot_plate[a - 1] + hot_plate[a - column_amount]) / 3)
 
-		if r != 0 and stop == True:
-			   
-			print "Turns:", r	
-			for i, cell in enumerate(hot_plate):
-				sys.stdout.write(" %r" % cell)
-				if 0 == (i + 1) % column_amount:
-					sys.stdout.write(" \n ")
+	else:
+		avg = ((hot_plate[a + 1] + hot_plate[a - 1] + hot_plate[a + column_amount] \
+		+ hot_plate[a - column_amount]) / 4)
 
-			sys.exit(0)
+	new_cell = math.ceil(avg * 100) / 100
+	hot_plate[a] = new_cell
+
+	test_cell = new_cell - old_cell
+	test[a] = test_cell
+	stop = all(x == 0 for x in test)
+
+	if r != 0 and stop == True:
+
+		print "Turns:", r	
+		for i, cell in enumerate(hot_plate):
+			sys.stdout.write(" %r" % cell)
+			if 0 == (i + 1) % column_amount:
+				sys.stdout.write(" \n ")
+
+		sys.exit(0)
 
 
-		
+
 for r in range(0, 1000):
 	for a, i in enumerate(hot_plate):
-		
+
+		# The four cells in the center must stay at 100
+
+		if a == middle_1 or \
+	   a == middle_2 or \
+	   a == middle_3 or \
+	   a == middle_4 or \
+	   
+			continue
+
+		# The four corner squares must stay at 0
+
+		if a == 0  or \
+	   a == column_amount - 1  or \
+	   a == plates - column_amount or \
+	   a == plates - 1:
+	    	
+
 		heat_up(a)
+
+
+
 		
