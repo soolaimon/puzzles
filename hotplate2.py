@@ -26,27 +26,33 @@ hot_plate[middle_2] = 100.0
 hot_plate[middle_3] = 100.0
 hot_plate[middle_4] = 100.0
 
+
 def heat_up(a):
+
 
 	old_cell = hot_plate[a]
 
-	if a <= (column_amount - 1):
-		avg = ((hot_plate[a + 1] + hot_plate[a - 1] + hot_plate[a + column_amount]) / 3)
+	count = 0
+	total = 0
 
-	elif a >= (plates - column_amount) and a < (plates - 1):
-		avg = ((hot_plate[a + 1] + hot_plate[a - 1] + hot_plate[a - column_amount]) / 3)
+	if hot_plate[a - column_amount] is not None:
+		total += hot_plate[a - 10]
+		count += 1
 
-	elif 0 == (a + 1) % column_amount:
-		avg = (hot_plate[a - 1] + hot_plate[a + column_amount] \
-		+ hot_plate[a - column_amount]) / 3
+	if hot_plate[a - column_amount] is not None:
+		total += hot_plate[a - 10]
+		count += 1
 
-	elif 0 == ((a + 1) % column_amount) - column_amount:
-		avg = (hot_plate[a + 1] + hot_plate[a + column_amount] \
-		+ hot_plate[a - column_amount]) / 3
+	if hot_plate[a - 1] is not None:
+		total += hot_plate[a - 1]
+		count += 1
 
-	else:
-		avg = ((hot_plate[a + 1] + hot_plate[a - 1] + hot_plate[a + column_amount] \
-		+ hot_plate[a - column_amount]) / 4)
+	if hot_plate [a + 1] is not None:
+		total += hot_plate [a + 1]
+		count += 1
+
+
+	avg = total / count
 
 	new_cell = math.ceil(avg * 100) / 100
 	hot_plate[a] = new_cell
@@ -64,7 +70,6 @@ def heat_up(a):
 				sys.stdout.write(" \n ")
 
 		sys.exit(0)
-
 
 
 for r in range(0, 1000):
