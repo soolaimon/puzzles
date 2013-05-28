@@ -51,11 +51,11 @@ def heat_up(a):
         total += bottom_plate
         count += 1
 
-    if 0 != (a + 1) % column_amount and 0 != (a + 1) % column_amount - column_amount:
+    if 0 != (a + 1) % column_amount and 0 != (a + column_amount) % column_amount:
         total += left_plate + right_plate
         count += 2
 
-    elif 0 == ((a + 1) % column_amount) - column_amount:
+    elif 0 == (a + column_amount) % column_amount:
         total += right_plate
         count += 1
 
@@ -67,7 +67,7 @@ def heat_up(a):
 
     avg = total / count
 
-    new_cell = math.ceil(avg * 100) / 100
+    new_cell = avg
     hot_plate[a] = new_cell
 
     test_cell = new_cell - old_cell
@@ -78,7 +78,7 @@ def heat_up(a):
 
         print "Turns:", r    
         for i, cell in enumerate(hot_plate):
-            sys.stdout.write(" %r" % cell)
+            sys.stdout.write(" %.2f" % cell)
             if 0 == (i + 1) % column_amount:
                 sys.stdout.write(" \n ")
 
@@ -107,7 +107,3 @@ for r in range(0, 1000):
             continue
 
         heat_up(a)
-
-
-
-        
