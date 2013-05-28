@@ -57,12 +57,12 @@ Sometimes the first row is used as the **header**.
 Since individual **fields** may sometimes contain one of the *separators*,
 it's common to quote those fields (but not necessarily all fields).
 
-    Name,Address
+    Name,Address,Age
     "Doe, John","123 Nowhere Ave
-    Provo, UT"
+    Provo, UT",27
     "Doe, Jane","321 Somewhere Dr
     Apt #222
-    Orem, UT"
+    Orem, UT",26
 
 Since **fields** may also sometimes contain quotes,
 an additonal quote may be used to escape quotes.
