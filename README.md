@@ -44,7 +44,7 @@ such as an address book.
     AJ,Alvin,ONeal,coolaj86@gmail.com
     Dave,David,Nelson,davidicus21@gmail.com
 
-It consists of a **column separator** - usually **commas** or tabs.
+It consists of a **column separator** - usually **commas** or tabs
 and a **row separator** - usually a newline, carriage return,
 or **[CRLF](http://stackoverflow.com/questions/1279779/what-is-the-difference-between-r-and-n)**.
 
@@ -54,8 +54,8 @@ Sometimes the first row is used as the **header**.
     AJ,Alvin,ONeal,coolaj86@gmail.com
     Dave,David,Nelson,davidicus21@gmail.com
 
-Since individual **fields** may sometimes contain one of the *separators*
-quoting is often used.
+Since individual **fields** may sometimes contain one of the *separators*,
+it's common to quote those fields (but not necessarily all fields).
 
     Name,Address
     "Doe, John","123 Nowhere Ave
@@ -82,13 +82,10 @@ an additonal quote may be used to escape quotes.
 When writing a streaming parser, you may need the next chunk
 to determine whether or not a line or field is complete.
 
-Chunk 1
-
-    "Alvin "
-
-Chunk 2
-
-    "AJ"" ONeal"
+For example: The 177th chunk may contain `"Alvin "` -
+as though it were a name field and the other fields were empty -
+and the 178th chunk may contain `"AJ"" ONeal"` -
+which is actually the continuation of the previous chunk.
 
 The row separator is often allowed to be any of `\r`, `\n`, or `\r\n`.
 
