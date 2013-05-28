@@ -34,3 +34,65 @@ but if the starting value of each cell were 50, the program would finish slightl
 ## Gotchas
 
 TBD
+
+# CSV Parser
+
+CSV (comma separeted values) is a fairly simple standard for storing information that
+can easily be represented as a spreadsheet (or a single table of a database),
+such as an address book.
+
+    AJ,Alvin,ONeal,coolaj86@gmail.com
+    Dave,David,Nelson,davidicus21@gmail.com
+
+It consists of a **column separator** - usually **commas** or tabs.
+and a **row separator** - usually a newline, carriage return,
+or **[CRLF](http://stackoverflow.com/questions/1279779/what-is-the-difference-between-r-and-n)**.
+
+Sometimes the first row is used as the **header**.
+
+    Nick,First,Last,Email
+    AJ,Alvin,ONeal,coolaj86@gmail.com
+    Dave,David,Nelson,davidicus21@gmail.com
+
+Since individual **fields** may sometimes contain one of the *separators*
+quoting is often used.
+
+    Name,Address
+    "Doe, John","123 Nowhere Ave
+    Provo, UT"
+    "Doe, Jane","321 Somewhere Dr
+    Apt #222
+    Orem, UT"
+
+Since **fields** may also sometimes contain quotes,
+an additonal quote may be used to escape quotes.
+
+> If double-quotes are used to enclose fields,
+> then a double-quote appearing inside a field 
+> must be escaped by preceding it with another
+> double quote. -
+> http://stackoverflow.com/a/769675/151312
+
+    Name,Email
+    "Alvin ""AJ"" ONeal",coolaj86@gmail.com
+    "David ""Dave"" Nelson,davidicus21@gmail.com
+
+## Gotchas
+
+When writing a streaming parser, you may need the next chunk
+to determine whether or not a line or field is complete.
+
+Chunk 1
+
+    "Alvin "
+
+Chunk 2
+
+    "AJ"" ONeal"
+
+The row separator is often allowed to be any of `\r`, `\n`, or `\r\n`.
+
+See also
+
+* http://en.wikipedia.org/wiki/Newline
+* http://stackoverflow.com/questions/1279779/what-is-the-difference-between-r-and-n
