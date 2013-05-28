@@ -31,27 +31,38 @@ hot_plate[middle_4] = 100.0
 
 def heat_up(a):
 
+    
 
     old_cell = hot_plate[a]
 
     count = 0
     total = 0
+    left_plate = hot_plate[a - 1]
+    right_plate = hot_plate[a + 1]
+        
 
-    if hot_plate[a - column_amount] is not None:
-        total += hot_plate[a - column_amount]
+    if  a - column_amount >= 0 :
+        top_plate = hot_plate[a - column_amount]
+        total += top_plate
         count += 1
 
-    if hot_plate[a - column_amount] is not None:
-        total += hot_plate[a + column_amount]
+    if a + column_amount <= plates:
+        bottom_plate = hot_plate[a + column_amount]
+        total += bottom_plate
         count += 1
 
-    if hot_plate[a - 1] is not None:
-        total += hot_plate[a - 1]
+    if 0 != (a + 1) % column_amount and 0 != (a + 1) % column_amount - column_amount:
+        total += left_plate + right_plate
+        count += 2
+
+    elif 0 == ((a + 1) % column_amount) - column_amount:
+        total += right_plate
         count += 1
 
-    if hot_plate [a + 1] is not None:
-        total += hot_plate [a + 1]
+    elif 0 == (a + 1) % column_amount:
+        total += left_plate
         count += 1
+
 
 
     avg = total / count
