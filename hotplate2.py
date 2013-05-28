@@ -42,7 +42,7 @@ def heat_up(a):
         count += 1
 
     if hot_plate[a - column_amount] is not None:
-        total += hot_plate[a - column_amount]
+        total += hot_plate[a + column_amount]
         count += 1
 
     if hot_plate[a - 1] is not None:
