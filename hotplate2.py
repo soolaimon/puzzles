@@ -2,7 +2,7 @@ import math
 import sys
 
 row_amount = int(raw_input("How many rows? "))
-column_amount = int(raw_input("How many columns?" ))
+column_amount = int(raw_input("How many columns? "))
 
 plates = row_amount * column_amount
 
@@ -78,9 +78,9 @@ def heat_up(a):
 
         print "Turns:", r    
         for i, cell in enumerate(hot_plate):
-            sys.stdout.write(" %.2f" % cell)
+            sys.stdout.write("  {0:6.2f}".format(cell))
             if 0 == (i + 1) % column_amount:
-                sys.stdout.write(" \n ")
+                sys.stdout.write("\n")
 
         sys.exit(0)
 
