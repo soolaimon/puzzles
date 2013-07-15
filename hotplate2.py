@@ -14,13 +14,9 @@ for i in range(0, plates):
     test.append(0.0)
 
 
-
-
 middle_1 = (plates / 2) + (column_amount / 2) 
 middle_2 = (plates / 2) + ((column_amount / 2) - 1) 
-
 middle_3 = ((plates / 2) - column_amount) + (column_amount / 2)
-
 middle_4 =((plates / 2) - column_amount) + ((column_amount / 2) - 1)
 
 hot_plate[middle_1] = 100.0
@@ -30,8 +26,6 @@ hot_plate[middle_4] = 100.0
 
 
 def heat_up(a):
-
-    
 
     old_cell = hot_plate[a]
 
@@ -51,11 +45,11 @@ def heat_up(a):
         total += bottom_plate
         count += 1
 
-    if 0 != (a + 1) % column_amount and 0 != (a + column_amount) % column_amount:
+    if 0 != (a + 1) % column_amount and 0 != a % column_amount:
         total += left_plate + right_plate
         count += 2
 
-    elif 0 == (a + column_amount) % column_amount:
+    elif 0 == a % column_amount:
         total += right_plate
         count += 1
 
@@ -72,7 +66,7 @@ def heat_up(a):
 
     test_cell = new_cell - old_cell
     test[a] = test_cell
-    stop = all(x == 0 for x in test)
+    stop = all(x < .000000000000001 for x in test)
 
     if r != 0 and stop == True:
 
@@ -85,7 +79,7 @@ def heat_up(a):
         sys.exit(0)
 
 
-for r in range(0, 1000):
+for r in range(0, 100000):
     for a, i in enumerate(hot_plate):
 
         # The four cells in the center must stay at 100
