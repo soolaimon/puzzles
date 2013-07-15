@@ -49,11 +49,11 @@ def heat_up(a):
         total += left_plate + right_plate
         count += 2
 
-    elif 0 == a % column_amount:
+    if 0 == a % column_amount:
         total += right_plate
         count += 1
 
-    elif 0 == (a + 1) % column_amount:
+    if 0 == (a + 1) % column_amount:
         total += left_plate
         count += 1
 
